@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Ира ❤️</title>
+
+<style>
+body {
+    margin:0;
+    padding:0;
+    background: linear-gradient(to bottom, #ff4e8b, #ff1f6b);
+    font-family: Arial, sans-serif;
+    text-align:center;
+    color:white;
+    overflow-x:hidden;
+}
+
+.container {
+    margin-top:60px;
+    padding:20px;
+}
+
+h1 {
+    font-size:42px;
+}
+
+.text {
+    font-size:20px;
+    margin:20px auto;
+    width:80%;
+    min-height:40px;
+}
+
+button {
+    padding:15px 35px;
+    font-size:18px;
+    border:none;
+    border-radius:40px;
+    background:white;
+    color:#ff1f6b;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover {
+    transform:scale(1.1);
+}
+
+.heart {
+    position:fixed;
+    top:-10px;
+    font-size:22px;
+    animation:fall linear infinite;
+}
+
+@keyframes fall {
+    to { transform: translateY(110vh); }
+}
+
+.bigHeart {
+    font-size:100px;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {transform:scale(1);}
+    50% {transform:scale(1.2);}
+    100% {transform:scale(1);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>💖 С Днём Святого Валентина, Ира 💖</h1>
+    <div class="text" id="text"></div>
+    <button onclick="nextText()">Дальше 💌</button>
+</div>
+
+<div id="final" style="display:none;">
+    <div class="bigHeart">❤️</div>
+    <h2>Ира, ты мой мир 💍</h2>
+</div>
+
+<script>
+
+let messages = [
+"Ты — самое прекрасное, что есть в моей жизни.",
+"Я не знаю как вышло так, что именно в тот день я наткнулся на тебя и ты ответила взаимностью.",
+"Я ценю каждую секунду, каждый миг, каждое мгновение проведённое с тобой.",
+"Я влюбился с первого дня, когда встретил тебя там в игре.",
+"Смешно правда? Найти родную душу через игру...",
+"Сказал бы мне кто раньше — я бы не поверил.",
+"Сейчас же я безумно рад тому дню и той секунде.",
+"Спасибо тебе за капризы, за любовь, за понимание и даже за недопонимание.",
+"За то что даёшь чувствовать себя живым.",
+"За искренность, за шум, за молчание — любая ты прекрасна.",
+"Спасибо тебе за поддержку, за чувства, за заботу.",
+"Ты чууууууууууууууууууууууууууууууууууууууууууууудо ❤️",
+"Я люблю тебя, моя маленькая принцесска ❤️",
+"Я тебя очень люблю ❤️",
+"Если тебе станет грустно, одиноко или тяжело — пиши мне.",
+"Я всегда рядом."
+];
+
+let index = 0;
+
+function nextText() {
+
+    if(index < messages.length){
+        typeWriter(messages[index]);
+        index++;
+        createHearts();
+    } else {
+        document.getElementById("final").style.display="block";
+    }
+}
+
+function typeWriter(text) {
+    let element = document.getElementById("text");
+    element.innerHTML = "";
+    let i = 0;
+    let speed = 40;
+
+    function typing() {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typing, speed);
+        }
+    }
+    typing();
+}
+
+function createHearts(){
+    for(let i=0;i<15;i++){
+        let heart = document.createElement("div");
+        heart.innerHTML="❤️";
+        heart.classList.add("heart");
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.animationDuration=(Math.random()*3+2)+"s";
+        document.body.appendChild(heart);
+        setTimeout(()=>{heart.remove();},5000);
+    }
+}
+
+</script>
+
+</body>
+</html>
